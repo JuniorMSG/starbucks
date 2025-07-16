@@ -9,7 +9,7 @@
 [ScrollMagic](https://github.com/janpaepke/ScrollMagic)
 [w3school - entities](https://www.w3schools.com/html/html_entities.asp)
 
-Gi
+Gi2
 
 ## 문자 인코딩(Character Encoding) 설정
 문자가 인코딩되는 방식을 설정합니다.
