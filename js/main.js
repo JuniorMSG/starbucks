@@ -1,28 +1,6 @@
 'use strict'
 
 /**
- * 검색창 제어
- */
-// 검색창 요소(.search) 찾기.
-const searchEl = document.querySelector('.search')
-const searchInputEl = searchEl.querySelector('input')
-// 검색창 요소를 클릭하면 실행.
-searchEl.addEventListener('click', function () {
-  searchInputEl.focus()
-})
-// 검색창 요소 내부 실제 input 요소에 포커스되면 실행.
-searchInputEl.addEventListener('focus', function () {
-  searchEl.classList.add('focused')
-  searchInputEl.setAttribute('placeholder', '통합검색')
-})
-// 검색창 요소 내부 실제 input 요소에서 포커스가 해제(블러)되면 실행.
-searchInputEl.addEventListener('blur', function () {
-  searchEl.classList.remove('focused')
-  searchInputEl.setAttribute('placeholder', '')
-})
-
-
-/**
  * 페이지 스크롤에 따른 요소 제어
  */
 // 페이지 스크롤에 영향을 받는 요소들을 검색!
@@ -43,7 +21,7 @@ window.addEventListener('scroll', _.throttle(function () {
       x: 0
     })
 
-  // 페이지 스크롤 위치가 500px이 넘지 않으면.
+    // 페이지 스크롤 위치가 500px이 넘지 않으면.
   } else {
     // Badge 요소 보이기!
     gsap.to(badgeEl, .6, {
@@ -136,7 +114,7 @@ promotionToggleBtn.addEventListener('click', function () {
   // 요소를 숨겨야 하면,
   if (isHidePromotion) {
     promotionEl.classList.add('hide')
-  // 요소가 보여야 하면,
+    // 요소가 보여야 하면,
   } else {
     promotionEl.classList.remove('hide')
   }
@@ -155,15 +133,15 @@ function random(min, max) {
 // 부유하는(떠 다니는) 요소를 만드는 함수
 function floatingObject(selector, delay, size) {
   gsap.to(
-    selector, // 선택자
-    random(1.5, 2.5), // 애니메이션 동작 시간
-    {
-      delay: random(0, delay), // 얼마나 늦게 애니메이션을 시작할 것인지 지연 시간을 설정.
-      y: size, // `transform: translateY(수치);`와 같음. 수직으로 얼마나 움직일지 설정.
-      repeat: -1, // 몇 번 반복하는지를 설정, `-1`은 무한 반복.
-      yoyo: true, // 한번 재생된 애니메이션을 다시 뒤로 재생.
-      ease: Power1.easeInOut // Easing 함수 적용.
-    }
+      selector, // 선택자
+      random(1.5, 2.5), // 애니메이션 동작 시간
+      {
+        delay: random(0, delay), // 얼마나 늦게 애니메이션을 시작할 것인지 지연 시간을 설정.
+        y: size, // `transform: translateY(수치);`와 같음. 수직으로 얼마나 움직일지 설정.
+        repeat: -1, // 몇 번 반복하는지를 설정, `-1`은 무한 반복.
+        yoyo: true, // 한번 재생된 애니메이션을 다시 뒤로 재생.
+        ease: Power1.easeInOut // Easing 함수 적용.
+      }
   )
 }
 floatingObject('.floating1', 1, 15)
@@ -179,17 +157,10 @@ const spyEls = document.querySelectorAll('section.scroll-spy')
 // 요소들 반복 처리!
 spyEls.forEach(function (spyEl) {
   new ScrollMagic
-    .Scene({ // 감시할 장면(Scene)을 추가
-      triggerElement: spyEl, // 보여짐 여부를 감시할 요소를 지정
-      triggerHook: .8 // 화면의 80% 지점에서 보여짐 여부 감시
-    })
-    .setClassToggle(spyEl, 'show') // 요소가 화면에 보이면 show 클래스 추가
-    .addTo(new ScrollMagic.Controller()) // 컨트롤러에 장면을 할당(필수!)
+      .Scene({ // 감시할 장면(Scene)을 추가
+        triggerElement: spyEl, // 보여짐 여부를 감시할 요소를 지정
+        triggerHook: .8 // 화면의 80% 지점에서 보여짐 여부 감시
+      })
+      .setClassToggle(spyEl, 'show') // 요소가 화면에 보이면 show 클래스 추가
+      .addTo(new ScrollMagic.Controller()) // 컨트롤러에 장면을 할당(필수!)
 })
-
-
-/**
- * 올해가 몇 년도인지 계산
- */
-const thisYear = document.querySelector('.this-year')
-thisYear.textContent = new Date().getFullYear()
